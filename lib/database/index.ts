@@ -2,11 +2,26 @@ import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-// Ensure the global object has a 'mongoose' property
-let cached = (global as any).mongoose;
+// 1. Define a proper interface
+interface MongooseCache {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
 
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+// 2. Extend the global object
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: MongooseCache;
+}
+
+// 3. Initialize global cache
+const cached: MongooseCache = global.mongoose || {
+  conn: null,
+  promise: null,
+};
+
+if (!global.mongoose) {
+  global.mongoose = cached;
 }
 
 export const connectToDatabase = async () => {
@@ -14,13 +29,14 @@ export const connectToDatabase = async () => {
 
   if (!MONGODB_URI) throw new Error('MONGODB_URI is missing');
 
-  cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
-    dbName: 'evently',
-    bufferCommands: false,
-  });
+  cached.promise =
+    cached.promise ||
+    mongoose.connect(MONGODB_URI, {
+      dbName: 'evently',
+      bufferCommands: false,
+    });
 
   cached.conn = await cached.promise;
 
   return cached.conn;
 };
-

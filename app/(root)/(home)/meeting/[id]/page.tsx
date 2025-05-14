@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Meeting = ({params}:{ params: {id: string}})  => {
+const Meeting = ()  => {
   return (
-    <div>Meeting Room : #{params.id}</div>
+    <div>Meeting Room </div>
   )
 }
 

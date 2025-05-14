@@ -1,0 +1,55 @@
+export const sidebarLinks = [
+    {
+        label: 'Home',
+        route: '/',
+        imgUrl: '/icons/Home.svg',
+    },
+    {
+        label: 'Upcoming',
+        route: '/upcoming',
+        imgUrl: '/icons/upcoming.svg',
+    },
+    {
+        label: 'Previous',
+        route: '/previous',
+        imgUrl: '/icons/previous.svg',
+    },
+    {
+        label: 'Recordings',
+        route: '/recordings',
+        imgUrl: '/icons/Video.svg',
+    },
+    {
+        label: 'Personal Room',
+        route: '/personal-room',
+        imgUrl: '/icons/add-personal.svg',
+    }
+];
+
+export const headerLinks = [
+    {
+      label: 'Home',
+      route: '/',
+    },
+    {
+      label: 'Create Event',
+      route: '/events/create',
+    },
+    {
+      label: 'My Profile',
+      route: '/profile',
+    },
+  ];
+  
+  export const eventDefaultValues = {
+    title: '',
+    description: '',
+    location: '',
+    imageUrl: '',
+    startDateTime: new Date(),
+    endDateTime: new Date(),
+    categoryId: '',
+    price: '',
+    isFree: false,
+    url: '',
+  }

@@ -10,7 +10,7 @@ const protectedRoutes = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, req) => {
   // Skip protection for public routes like /api/webhook
-  if (req.nextUrl.pathname === '/api/webhook') return
+  if (req.nextUrl.pathname === '/api/webhooks') return
 
   if (protectedRoutes(req)) {
     await auth.protect()

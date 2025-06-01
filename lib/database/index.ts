@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = 'mongodb+srv://adityakumar:923414@cluster0.jtburli.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // 1. Define a proper interface
 interface MongooseCache {

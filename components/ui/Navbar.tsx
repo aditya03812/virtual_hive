@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
-import MobileNav from './MobileNav'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { Button } from './button'
 import NavItems from './NavItems'

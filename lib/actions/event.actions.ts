@@ -1,7 +1,6 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { Query } from 'mongoose'
 
 import { connectToDatabase } from '@/lib/database'
 import Event from '@/lib/database/models/event.model'
@@ -22,7 +21,8 @@ const getCategoryByName = async (name: string) => {
   return Category.findOne({ name: { $regex: name, $options: 'i' } })
 }
 
-const populateEvent = (query: Query<any, typeof Event>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const populateEvent = (query: any) => {
   return query
     .populate({ path: 'organizer', model: User, select: '_id firstName lastName' })
     .populate({ path: 'category', model: Category, select: '_id name' })

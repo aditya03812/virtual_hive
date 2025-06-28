@@ -10,16 +10,14 @@ const getParam = (param?: string | string[]) => {
 };
 
 interface SearchParamProps {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 const EventDetails = async ({ params, searchParams }: SearchParamProps) => {
-  const resolvedParams = await params;
-  const resolvedSearchParams = await searchParams;
 
-  const id = resolvedParams.id;
-  const rawPage = getParam(resolvedSearchParams.page);
+  const id = params.id;
+  const rawPage = getParam(searchParams.page);
   const page = Math.max(Number(rawPage) || 1, 1); // ensure valid page >= 1
 
   const event = await getEventById(id);

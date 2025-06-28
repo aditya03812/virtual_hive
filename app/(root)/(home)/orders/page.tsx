@@ -1,8 +1,13 @@
 import { formatDateTime, formatPrice } from '@/lib/utils'
-import { SearchParamProps } from '@/types'
+// import { SearchParamProps } from '@/types'
 import { IOrderItem } from '@/lib/database/models/order.model'
 import { getOrdersByEvent } from '@/lib/actions/order.action'
 import Search from '@/components/ui/Search'
+
+interface SearchParamProps {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
 const Orders = async (props: SearchParamProps) => {
   // ✅ Await the promised params and searchParams

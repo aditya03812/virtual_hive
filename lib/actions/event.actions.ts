@@ -8,6 +8,7 @@ import User from '@/lib/database/models/user.model'
 import Category from '@/lib/database/models/category.model'
 import { handleError } from '@/lib/utils'
 
+
 import {
   CreateEventParams,
   UpdateEventParams,
@@ -173,3 +174,4 @@ export async function getRelatedEventsByCategory({
     handleError(error)
   }
 }
+

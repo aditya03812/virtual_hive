@@ -1,15 +1,14 @@
+// ✅ page.tsx
 import EventForm from "@/components/ui/EventForm";
 import { getEventById } from "@/lib/actions/event.actions";
 import { auth } from "@clerk/nextjs/server";
 
-type UpdateEventProps = {
-  params: any; // 👈 Skip strict type checking
-};
-
-const UpdateEvent = async ({ params }: UpdateEventProps) => {
-  // 👇 Skip the type error for `params.id`
-
-  const { id } = params;
+const UpdateEvent = async ({
+  params: paramsPromise,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await paramsPromise;
 
   const { sessionClaims } = await auth();
   const userId = sessionClaims?.userId as string;

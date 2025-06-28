@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const evt = await verifyWebhook(req);
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id } = evt.data;
     const eventType = evt.type;
 

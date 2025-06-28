@@ -1,20 +1,15 @@
 import EventForm from "@/components/ui/EventForm";
 import { getEventById } from "@/lib/actions/event.actions";
+import { UpdateEventProps } from "@/types";
 import { auth } from "@clerk/nextjs/server";
 
-type UpdateEventProps = {
-  params: {
-    id: string;
-  };
-};
-
-const UpdateEvent = async (props: UpdateEventProps) => {
-  const { id } = props.params; // ✅ Access `params.id` here, not in the signature
+const UpdateEvent = async ({ params }: UpdateEventProps) => {
+  const eventId = params.id; // ✅ synchronous
 
   const { sessionClaims } = await auth();
   const userId = sessionClaims?.userId as string;
 
-  const event = await getEventById(id);
+  const event = await getEventById(eventId);
 
   return (
     <>

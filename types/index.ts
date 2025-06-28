@@ -148,5 +148,10 @@ export type CreateUserParams = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
+export type UpdateEventProps = {
+  // skip strict TS checks
+  params: { id: string };
+};
+
 
   

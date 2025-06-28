@@ -138,6 +138,72 @@
     @apply text-[16px] font-medium leading-[24px];
   }
 
+  .p-regular-24 {
+    @apply font-normal text-[24px] leading-[36px];
+  }
+
+  /* 20 */
+  .p-bold-20 {
+    @apply font-bold text-[20px] leading-[30px] tracking-[2%];
+  }
+
+  .p-semibold-20 {
+    @apply text-[20px] font-semibold leading-[30px] tracking-[2%];
+  }
+
+  .p-medium-20 {
+    @apply text-[20px] font-medium leading-[30px];
+  }
+
+  .p-regular-20 {
+    @apply text-[20px] font-normal leading-[30px] tracking-[2%];
+  }
+
+  /* 18 */
+  .p-semibold-18 {
+    @apply text-[18px] font-semibold leading-[28px] tracking-[2%];
+  }
+
+  .p-medium-18 {
+    @apply text-[18px] font-medium leading-[28px];
+  }
+
+  .p-regular-18 {
+    @apply text-[18px] font-normal leading-[28px] tracking-[2%];
+  }
+
+  /* 16 */
+  .p-bold-16 {
+    @apply text-[16px] font-bold leading-[24px];
+  }
+
+  .p-medium-16 {
+    @apply text-[16px] font-medium leading-[24px];
+  }
+
+  .p-regular-16 {
+    @apply text-[16px] font-normal leading-[24px];
+  }
+
+  /* 14 */
+  .p-semibold-14 {
+    @apply text-[14px] font-semibold leading-[20px];
+  }
+
+  .p-medium-14 {
+    @apply text-[14px] font-medium leading-[20px];
+  }
+
+  .p-regular-14 {
+    @apply text-[14px] font-normal leading-[20px];
+  }
+
+  /* 12 */
+  .p-medium-12 {
+    @apply text-[12px] font-medium leading-[20px];
+  }
+
+
   
 
   /* 14 */
@@ -159,7 +225,13 @@
   }
 
   /* SHADCN OVERRIDES */
+  .input-field {
+    @apply bg-grey-50 h-[54px] focus-visible:ring-offset-0 placeholder:text-grey-500 rounded-full px-4 py-3  border-none focus-visible:ring-transparent text-[16px] font-normal leading-[24px];
+  }
   
+  .select-field {
+    @apply w-full bg-grey-50 !h-[54px] placeholder:text-grey-500 rounded-full px-4 py-3 border-none focus-visible:ring-transparent focus:ring-transparent text-[16px] font-normal leading-[24px];
+  }
 
   
 }
@@ -281,6 +353,10 @@
   --color-dark-2: #161925;
   --color-blue-1: #0E78F9;
   --color-primary: #1C1F2E;
+  --color-grey-50: #F6F6F6;
+  --color-grey-400:#AFAFAF;
+  --color-grey-500:#757575;
+  --color-grey-600:#545454;
 
 
   

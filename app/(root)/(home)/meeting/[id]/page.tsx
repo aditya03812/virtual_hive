@@ -1,8 +1,17 @@
+// import React from 'react'
+
+// const Meeting = ({params}:{ params: {id: string}})  => {
+//   return (
+//     <div>Meeting Room : #{params.id}</div>
+//   )
+// }
+
+// export default Meeting
 import React from 'react'
 
-const Meeting = ({params}:{ params: {id: string}})  => {
+const Meeting = () => {
   return (
-    <div>Meeting Room : #{params.id}</div>
+    <div>page</div>
   )
 }
 

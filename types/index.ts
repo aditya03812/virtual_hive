@@ -9,10 +9,10 @@ export type CreateUserParams = {
   }
   
   export type UpdateUserParams = {
-    firstName: string
-    lastName: string
-    username: string
-    photo: string
+    firstName: string | null;
+    lastName: string | null;
+    username: string;
+    photo: string;
   }
   
   // ====== EVENT PARAMS
@@ -144,7 +144,8 @@ export type CreateUserParams = {
   }
   
   export type SearchParamProps = {
-    params: { id: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-  }
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
   

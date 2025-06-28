@@ -10,18 +10,19 @@ const getParam = (param?: string | string[]) => {
 };
 
 interface SearchParamProps {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 const EventDetails = async ({ params, searchParams }: SearchParamProps) => {
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
 
-  const id = params.id;
-  const rawPage = getParam(searchParams.page);
-  const page = Math.max(Number(rawPage) || 1, 1); // ensure valid page >= 1
+  const id = resolvedParams.id;
+  const rawPage = getParam(resolvedSearchParams.page);
+  const page = Math.max(Number(rawPage) || 1, 1);
 
   const event = await getEventById(id);
-
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
     eventId: event._id,
@@ -39,11 +40,9 @@ const EventDetails = async ({ params, searchParams }: SearchParamProps) => {
             height={1000}
             className="h-full min-h-[300px] object-cover object-center"
           />
-
           <div className="flex w-full flex-col gap-8 p-5 md:p-10">
             <div className="flex flex-col gap-6">
               <h2 className="h2-bold text-white">{event.title}</h2>
-
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="flex gap-3">
                   <p className="p-bold-20 rounded-full bg-green-500/10 px-5 py-2 text-green-700">
@@ -53,7 +52,6 @@ const EventDetails = async ({ params, searchParams }: SearchParamProps) => {
                     {event.category.name}
                   </p>
                 </div>
-
                 <p className="p-medium-18 text-white ml-2 mt-2 sm:mt-0">
                   by{' '}
                   <span className="text-primary-500 text-white">
@@ -70,12 +68,10 @@ const EventDetails = async ({ params, searchParams }: SearchParamProps) => {
                 <Image src="/assets/icons/calendar.svg" alt="calendar" width={32} height={32} />
                 <div className="p-medium-16 text-white lg:p-regular-20 flex flex-wrap items-center">
                   <p>
-                    {formatDateTime(event.startDateTime).dateOnly} -{' '}
-                    {formatDateTime(event.startDateTime).timeOnly}
+                    {formatDateTime(event.startDateTime).dateOnly} - {formatDateTime(event.startDateTime).timeOnly}
                   </p>
                   <p>
-                    {formatDateTime(event.endDateTime).dateOnly} -{' '}
-                    {formatDateTime(event.endDateTime).timeOnly}
+                    {formatDateTime(event.endDateTime).dateOnly} - {formatDateTime(event.endDateTime).timeOnly}
                   </p>
                 </div>
               </div>
@@ -97,10 +93,8 @@ const EventDetails = async ({ params, searchParams }: SearchParamProps) => {
         </div>
       </section>
 
-      {/* Related Events */}
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold text-white">Related Events</h2>
-
         <Collection
           data={relatedEvents?.data}
           emptyTitle="No Events Found"

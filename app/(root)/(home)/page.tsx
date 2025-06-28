@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Collection from '@/components/ui/ui/Collection';
 import { getAllEvents } from '@/lib/actions/event.actions';
+import Search from '@/components/ui/Search';
+import CategoryFilter from '@/components/ui/CategoryFilter';
 
 interface HomePageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>; // ✅ make it a promise
@@ -58,8 +60,8 @@ export default async function Home({ searchParams }: HomePageProps) {
 
         <div className="flex w-full flex-col gap-5 md:flex-row">
           {/* You can add Search and CategoryFilter components here */}
-          Search
-          CategoryFilter
+          <Search />
+          <CategoryFilter />
         </div>
 
         <Collection

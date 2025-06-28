@@ -1,11 +1,16 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { Button } from './button'
 import NavItems from './NavItems'
+import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
     <nav className="flex flex-wrap justify-between items-center fixed z-50 w-full bg-dark-1 px-6 py-4 lg:px-10">
       
@@ -16,29 +21,51 @@ const Navbar = () => {
           width={32}
           height={32}
           alt="Virtual-Hive"
-          className="max-sm:size-10"
+          className="max-md:size-10"
         />
-        <p className="text-[26px] font-extrabold text-white sm:inline">Virtual Hive</p>
+        <p className="text-[26px] font-extrabold text-white">Virtual Hive</p>
       </Link>
 
-      {/* Nav Items (Always visible, stacked on small) */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+      {/* Hamburger icon (visible on <lg screens) */}
+      <button
+        className="lg:hidden text-white"
+        onClick={() => setIsMenuOpen(prev => !prev)}
+      >
+        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
+
+      {/* Nav Items (visible on lg+, toggled on smaller screens) */}
+      <div
+        className={`${
+          isMenuOpen ? 'flex' : 'hidden'
+        } flex-col lg:flex lg:flex-row lg:items-center gap-4 w-full lg:w-auto mt-4 lg:mt-0`}
+      >
         <NavItems />
+
+        {/* Auth Controls inside menu for mobile/medium */}
+        <div className="flex flex-col lg:hidden gap-2 mt-4">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <Button asChild className="rounded-full bg-blue-500" size="lg">
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          </SignedOut>
+        </div>
       </div>
 
-      {/* Right side: Auth controls */}
-      <div className="flex items-center gap-4 mt-4 sm:mt-0">
+      {/* Auth Controls for large screens */}
+      <div className="hidden lg:flex items-center gap-4">
         <SignedIn>
           <UserButton />
         </SignedIn>
-        
         <SignedOut>
           <Button asChild className="rounded-full bg-blue-500" size="lg">
             <Link href="/sign-in">Login</Link>
           </Button>
         </SignedOut>
       </div>
-
     </nav>
   )
 }

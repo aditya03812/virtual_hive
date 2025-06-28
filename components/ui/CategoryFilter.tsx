@@ -19,14 +19,15 @@ const CategoryFilter = () => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const getCategories = async () => {
-      const categoryList = await getAllCategories();
-
-      categoryList && setCategories(categoryList as ICategory[])
+  const getCategories = async () => {
+    const categoryList = await getAllCategories();
+    if (categoryList) {
+      setCategories(categoryList as ICategory[]);
     }
-
-    getCategories();
-  }, [])
+  }
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  getCategories(); 
+}, []);
 
   const onSelectCategory = (category: string) => {
       let newUrl = '';

@@ -7,7 +7,7 @@ import Search from '@/components/ui/Search'
 const Orders = async (props: SearchParamProps) => {
   // ✅ Await the promised params and searchParams
   const searchParams = await props.searchParams
-  const params = await props.params
+  // const params = await props.params
 
   const eventId = (searchParams?.eventId as string) || ''
   const searchText = (searchParams?.query as string) || ''

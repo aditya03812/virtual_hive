@@ -6,6 +6,7 @@ import Collection from '@/components/ui/ui/Collection';
 import { getAllEvents } from '@/lib/actions/event.actions';
 import Search from '@/components/ui/Search';
 import CategoryFilter from '@/components/ui/CategoryFilter';
+import MeetingTypeList from '@/components/Meeting/MeetingTypeList';
 
 interface HomePageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>; // ✅ make it a promise
@@ -28,6 +29,11 @@ export default async function Home({ searchParams }: HomePageProps) {
     page,
     limit: 6,
   });
+
+  const now = new Date();
+
+  const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  const date = (new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(now);
 
   return (
     <>
@@ -54,8 +60,27 @@ export default async function Home({ searchParams }: HomePageProps) {
           />
         </div>
       </section>
+    
 
-      <section id="events" className="bg-primary wrapper my-0 pl-8! flex flex-col gap-8 md:gap-12 text-white">
+<section className="flex  flex-col gap-5 mt-10 text-white">
+      <div className="h-[308px] w-full rounded-[20px] bg-[image:var(--bg-hero)] bg-cover">
+        <div className="flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:p-11">
+          <h2 className="glassmorphism max-w-[273px] rounded py-2 text-center text-base font-normal">
+            Upcoming Meeting at: 12:30 PM
+          </h2>
+          <div className="flex flex-col gap-2">
+            <h1 className="text-4xl font-extrabold lg:text-7xl">{time}</h1>
+            <p className="text-lg font-medium text-sky-1 lg:text-2xl">{date}</p>
+          </div>
+        </div>
+      </div>
+
+     < MeetingTypeList /> 
+    </section>
+
+
+
+      <section id="events" className="bg-primary wrapper mt-10 my-0 pl-8! flex flex-col gap-8 md:gap-12 text-white">
         <h2 className="h2-bold">Trusted by <br /> Thousands of Events</h2>
 
         <div className="flex w-full flex-col gap-5 md:flex-row">

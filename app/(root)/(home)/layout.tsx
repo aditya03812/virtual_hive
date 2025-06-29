@@ -1,7 +1,7 @@
 import Footer from '@/components/ui/Footer'
 import Navbar from '@/components/ui/Navbar'
 import Sidebar from '@/components/ui/Sidebar'
-import React, { ReactNode} from 'react'
+import React from 'react'
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
